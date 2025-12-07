@@ -16,16 +16,17 @@ const config = {
 			// If deploying to https://<username>.github.io/<repo-name>
 			// set base to '/<repo-name>'
 			// If deploying to https://<username>.github.io (user/org site), leave as ''
-			base: process.env.NODE_ENV === 'production' ? '' : ''
+			base: process.env.NODE_ENV === 'production' ? '/portfoliosite' : ''
 		},
 		prerender: {
 			handleHttpError: ({ path, referrer, message }) => {
 				// Ignore missing pages that are linked but not yet created
-				if (path.startsWith('/careers') ||
-				    path.startsWith('/news') ||
-				    path.startsWith('/contact') ||
-				    path.startsWith('/privacy') ||
-				    path.startsWith('/terms')) {
+				// Check both with and without base path prefix
+				const ignoredPaths = ['/careers', '/news', '/contact', '/privacy', '/terms'];
+				const shouldIgnore = ignoredPaths.some(p =>
+					path.startsWith(p) || path.startsWith('/portfoliosite' + p)
+				);
+				if (shouldIgnore) {
 					console.warn(`Warning: ${path} not found (linked from ${referrer})`);
 					return;
 				}

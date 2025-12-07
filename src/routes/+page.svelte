@@ -1,14 +1,15 @@
 <script lang="ts">
   import Hero3D from '$lib/components/Hero3D.svelte';
+  import { base } from '$app/paths';
   import { goto } from '$app/navigation';
-  
+
   // Client logos for trust indicators
   const clients = [
     'Verizon', 'AT&T', 'T-Mobile', 'Vodafone', 'Orange', 'Deutsche Telekom'
   ];
-  
+
   function navigateToProduct(productId: string) {
-    goto(`/products/${productId}`);
+    goto(`${base}/products/${productId}`);
   }
 </script>
 
@@ -39,7 +40,7 @@
       <div class="flex flex-col sm:flex-row gap-4 mb-16">
         <button 
           class="group inline-flex items-center justify-center gap-2 border border-brand-900 hover:border-brand-800 text-brand-700 hover:text-brand-900 px-8 py-4 rounded-full font-medium text-lg transition-all duration-300"
-          on:click={() => goto('/products')}
+          on:click={() => goto(`${base}/products`)}
         >
           Explore Solutions
           <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">

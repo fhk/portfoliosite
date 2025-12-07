@@ -1,10 +1,11 @@
 <script lang="ts">
   import '../app.css';
+  import { base } from '$app/paths';
   import { page } from '$app/stores';
   import { goto } from '$app/navigation';
 
   let currentRoute = '';
-  $: currentRoute = $page.url.pathname;
+  $: currentRoute = $page.url.pathname.replace(base, '') || '/';
 
   let productsDropdownOpen = false;
 
@@ -17,7 +18,7 @@
   }
 
   function navigateToProduct(path: string) {
-    goto(path);
+    goto(`${base}${path}`);
     closeDropdown();
   }
 </script>
@@ -26,17 +27,17 @@
   <!-- Header -->
   <header class="bg-white shadow-sm border-b border-brand-200">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <button 
-        class="text-xl font-bold text-brand-900 hover:text-brand-700 transition-colors" 
-        on:click={() => goto('/')}
+      <button
+        class="text-xl font-bold text-brand-900 hover:text-brand-700 transition-colors"
+        on:click={() => goto(`${base}/`)}
       >
         Altman Solon
       </button>
       
       <div class="flex space-x-6">
-        <button 
-          class="px-4 py-2 rounded-md font-medium transition-colors {currentRoute === '/' ? 'bg-brand-100 text-brand-800' : 'text-brand-600 hover:text-brand-900'}" 
-          on:click={() => goto('/')}
+        <button
+          class="px-4 py-2 rounded-md font-medium transition-colors {currentRoute === '/' ? 'bg-brand-100 text-brand-800' : 'text-brand-600 hover:text-brand-900'}"
+          on:click={() => goto(`${base}/`)}
         >
           Home
         </button>
@@ -135,9 +136,9 @@
             </div>
           {/if}
         </div>
-        <button 
-          class="px-4 py-2 rounded-md font-medium transition-colors {currentRoute === '/about' ? 'bg-brand-100 text-brand-800' : 'text-brand-600 hover:text-brand-900'}" 
-          on:click={() => goto('/about')}
+        <button
+          class="px-4 py-2 rounded-md font-medium transition-colors {currentRoute === '/about' ? 'bg-brand-100 text-brand-800' : 'text-brand-600 hover:text-brand-900'}"
+          on:click={() => goto(`${base}/about`)}
         >
           About
         </button>
@@ -186,18 +187,18 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">Products</h4>
           <ul class="space-y-2">
-            <li><a href="/products/arrow" class="text-arrow-400 hover:text-arrow-300 transition-colors">Arrow - Network Optimization</a></li>
-            <li><a href="/products/hyperlocal" class="text-hyperlocal-400 hover:text-hyperlocal-300 transition-colors">HyperlocalAI - Customer Intelligence</a></li>
-            <li><a href="/products/prism" class="text-prism-400 hover:text-prism-300 transition-colors">PrismAI - Value Maximization</a></li>
+            <li><a href="{base}/products/arrow" class="text-arrow-400 hover:text-arrow-300 transition-colors">Arrow - Network Optimization</a></li>
+            <li><a href="{base}/products/hyperlocal" class="text-hyperlocal-400 hover:text-hyperlocal-300 transition-colors">HyperlocalAI - Customer Intelligence</a></li>
+            <li><a href="{base}/products/prism" class="text-prism-400 hover:text-prism-300 transition-colors">PrismAI - Value Maximization</a></li>
           </ul>
         </div>
         <div>
           <h4 class="text-lg font-semibold mb-4">Company</h4>
           <ul class="space-y-2 text-brand-300">
-            <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
-            <li><a href="/careers" class="hover:text-white transition-colors">Careers</a></li>
-            <li><a href="/news" class="hover:text-white transition-colors">News & Insights</a></li>
-            <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="{base}/about" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="{base}/careers" class="hover:text-white transition-colors">Careers</a></li>
+            <li><a href="{base}/news" class="hover:text-white transition-colors">News & Insights</a></li>
+            <li><a href="{base}/contact" class="hover:text-white transition-colors">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -208,8 +209,8 @@
             <span class="bg-brand-800 text-brand-200 px-3 py-1 rounded-full text-sm">GDPR Compliant</span>
           </div>
           <ul class="space-y-2 text-brand-300 text-sm">
-            <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
-            <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+            <li><a href="{base}/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="{base}/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
           </ul>
         </div>
       </div>
