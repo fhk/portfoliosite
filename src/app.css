@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Custom color variables for product differentiation */
+:root {
+  --arrow-color: theme('colors.arrow.500');
+  --hyperlocal-color: theme('colors.hyperlocal.500');
+  --prism-color: theme('colors.prism.500');
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
