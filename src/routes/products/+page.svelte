@@ -269,7 +269,7 @@
     <div class="max-w-6xl mx-auto">
       <div class="bg-brand-50 rounded-3xl p-8 border border-brand-100">
         <img
-          src="/arch.svg"
+          src="{base}/arch.svg"
           alt="Platform Architecture Diagram showing use cases, solutions, ML models, and data sources"
           class="w-full h-auto"
         />
