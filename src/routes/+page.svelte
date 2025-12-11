@@ -5,7 +5,7 @@
 
   // Client logos for trust indicators
   const clients = [
-    'Verizon', 'AT&T', 'T-Mobile', 'Vodafone', 'Orange', 'Deutsche Telekom'
+    'Customer', 'Customer', 'Customer', 'Customer', 'Customer', 'Customer'
   ];
 
   function navigateToProduct(productId: string) {
